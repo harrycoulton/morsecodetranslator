@@ -1,9 +1,17 @@
 <?php
 
 
-$userInput = "JET FUEL DOESN'T MELT STEEL BEAMS BRO ";
+$userInput = "the quick brown fox";
+
 $userInputlowerCase = strtolower($userInput);
-$sourceMaterial = str_split($userInputlowerCase);
+$source = explode(' ', $userInputlowerCase);
+
+$sourceArray = [];
+
+foreach ($source as $word) {
+    $splitWord = str_split($word);
+    array_push($sourceArray, $splitWord);
+ }
 
 $morsecodearray = [
     "a" =>	'.-',
@@ -58,12 +66,13 @@ $morsecodearray = [
     "/" =>	'-..-.',
     ];
 
-
-foreach ($sourceMaterial as $character) {
-    foreach ($morsecodearray as $letter => $morse) {
-        if ($letter === $character) {
-            echo "$morse ";
-        }
+    foreach ($sourceArray as $word) {
+        foreach($word as $character) {
+            foreach ($morsecodearray as $letter => $morse) {
+                if ($letter === $character) {
+                    echo $morse. ' ';
+            }
+        } 
     }
 }
 
